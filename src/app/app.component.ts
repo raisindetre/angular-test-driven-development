@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  comments:Array<string>;
+  comments:Array<any>;
   title = 'app works!';
 
   constructor() {
@@ -15,6 +15,11 @@ export class AppComponent {
   }
 
   add(comment) {
-    this.comments.unshift(comment);
+    var commentObj = { title: comment, likes: 0};
+    this.comments.unshift(commentObj);
+  }
+
+  like(comment){
+    comment.likes++;
   }
 }

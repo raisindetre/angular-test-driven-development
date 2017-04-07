@@ -25,10 +25,29 @@ describe('begin e2e testing of Todo App', function () {
       // Test if comment was added
       it('should add a comment', () => {
         var comment = element.all(by.css('li')).first();
-        expect(comment.getText()).toBe('a sample comment');
+        expect(comment.getText()).toBe('a sample comment like 0');
       });
 
     });
+
+    describe('when I like a comment', () => {
+      var firstComment = null;
+      beforeEach(() => {
+        firstComment = element.all(by.css('li')).first();
+        var likeButton = firstComment.all(by.buttonText('like'));
+
+        likeButton.click();
+      });
+
+      it('should increase like comment count to 1', () => {
+        var commentLikes = element.all(by.css('li')).first().all(by.css('#likes')).first();
+        //browser.pause();
+        expect(commentLikes.getText()).toBe('1');
+      });
+    });
+
   });
+
+
 
 });
