@@ -2,6 +2,7 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 
 describe('App: ToDo Application', () => {
 
@@ -13,6 +14,7 @@ describe('App: ToDo Application', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent], // declare the test component
+      imports: [FormsModule]
     });
 
     fixture = TestBed.createComponent(AppComponent);
@@ -25,7 +27,7 @@ describe('App: ToDo Application', () => {
   }));
 
   it('first comment should match', () => {
-    expect(app.comments[0]).toBe('a sample comment');
+    expect(app.comments[0].title).toBe('a sample comment');
   })
 
 });
