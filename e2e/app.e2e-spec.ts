@@ -48,6 +48,38 @@ describe('begin e2e testing of Todo App', function () {
 
   });
 
+  describe('Given views should flip through navigation interaction', () => {
+
+    var view = element(by.css('#defaultView'));
+    var view1 = element(by.css('#view1'));
+    var view2 = element(by.css('#view2'));
 
 
+    beforeEach(() => {
+      browser.get('');
+
+      //Confirm View 1 or two are not visible
+      [1, 2].map((x) => {
+        expect(element(by.css('#view' + x)).isPresent()).toBeFalsy();
+      });
+
+      var viewLink1 = element(by.linkText('View1'));
+      viewLink1.click();
+
+    });
+
+    it('should now display View1 page', () => {
+      expect(view1.isPresent()).toBeTruthy();
+    });
+
+    it('...and View2 should not be visible', () => {
+      expect(view2.isPresent()).toBeFalsy();
+    });
+
+    it('...and refreshing to default page should hide both View1 and View2', () => {
+      browser.get('');
+      expect(view1.isPresent()).toBeFalsy();
+      expect(view2.isPresent()).toBeFalsy();
+    });
+  });
 });
